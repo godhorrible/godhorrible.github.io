@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
+    <title>请吃掉我博客</title>
     <link>https://godhorrible.github.io/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <description>Recent content on 请吃掉我博客</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 14 Jan 2021 13:09:30 +0800</lastBuildDate><atom:link href="https://godhorrible.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 14 Jan 2021 15:34:20 +0800</lastBuildDate><atom:link href="https://godhorrible.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>About</title>
-      <link>https://godhorrible.github.io/post/about/</link>
-      <pubDate>Thu, 14 Jan 2021 13:09:30 +0800</pubDate>
+      <title>Markdown</title>
+      <link>https://godhorrible.github.io/post/markdown/</link>
+      <pubDate>Thu, 14 Jan 2021 15:34:20 +0800</pubDate>
       
-      <guid>https://godhorrible.github.io/post/about/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Bolg</title>
-      <link>https://godhorrible.github.io/post/blog/</link>
-      <pubDate>Tue, 12 Jan 2021 18:49:40 +0800</pubDate>
-      
-      <guid>https://godhorrible.github.io/post/blog/</guid>
-      <description>数据库、缓存相关 </description>
+      <guid>https://godhorrible.github.io/post/markdown/</guid>
+      <description>markdown语法学习 1. 标题 在想要设置的标题前加入#，根据#的数量决定标题的级数（#后面需要空格） 示例： # 这是一级标题 ## 这是二级标题 ### 这是三级标题 #### 这是四级标题 ##### 这是五级标题 这是一级标题 这是二级标题 这是三级标题 这是四级标题 这是五级标题 2. 字体 加粗 用2个**包起来 斜体 用1个*包起来</description>
     </item>
     
   </channel>
