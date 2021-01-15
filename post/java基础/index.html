@@ -9,21 +9,24 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
     
 
-    <title>Posts | 请吃掉我博客</title>
-    <meta property="og:title" content="Posts - 请吃掉我博客">
+    <title>Java基础 | 请吃掉我博客</title>
+    <meta property="og:title" content="Java基础 - 请吃掉我博客">
     <meta property="og:type" content="article">
         
+    <meta property="article:published_time" content='2021-01-15T14:26:58&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2021-01-15T14:26:58&#43;08:00'>
         
     <meta name="Keywords" content="学习">
-    <meta name="description" content="Posts">
+    <meta name="description" content="Java基础">
         
     <meta name="author" content="请吃掉我">
-    <meta property="og:url" content="https://www.flysnow.org/post/">
+    <meta property="og:url" content="https://www.flysnow.org/post/java%E5%9F%BA%E7%A1%80/">
     <link rel="shortcut icon" href='/favicon.ico'  type="image/x-icon">
 
     <link rel="stylesheet" href='/css/normalize.css'>
     <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="https://www.flysnow.org/post/index.xml" title="请吃掉我博客" />
     <script type="text/javascript" src="//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
@@ -75,84 +78,114 @@
                     
 <div class="res-cons">
     
-    
     <article class="post">
         <header>
-            <h1 class="post-title">
-                <a href="https://www.flysnow.org/post/java%E5%9F%BA%E7%A1%80/" title="Java基础">Java基础</a>
-            </h1>
+            <h1 class="post-title">Java基础</h1>
         </header>
         <date class="post-meta meta-date">
             2021年1月15日
         </date>
         
-        <div class="post-content">
-            java比较杂的基础 一、jdk，JRE，JVM 以下为官方提供的java结构图 java结构图 JDK(Java Development Kit，java开发工具包) JDK包含了java 的所有内容，包括JRE和JVM。 比JRE包含了更多的是开发需要的工具，比如javac，javadoc等。 JRE(Java Runtime Environment, java运行环境) java的……
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
         </div>
-        <p class="readmore"><a href="https://www.flysnow.org/post/java%E5%9F%BA%E7%A1%80/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://www.flysnow.org/post/Chocolatey%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" title="Chocolatey的安装与使用">Chocolatey的安装与使用</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2021年1月15日
-        </date>
+        
         
         <div class="post-content">
-            Chocolatey的安装与使用 一、Chocolatey简介 Chocolatey是Windows平台上一款软件包管理器，便于安装各种软件包，用命令行的方式完成安装，并省去了环境变量设置等操作 二、Chocolatey安装 首先以管理员的身份打开PowerShell iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')) # 或者下面的命……
+            <h1 id="java比较杂的基础">java比较杂的基础</h1>
+<h3 id="一jdkjrejvm">一、jdk，JRE，JVM</h3>
+<p>以下为官方提供的java结构图</p>
+<p><figure class="max-w-2xl mx-auto overflow-hidden">
+    
+        <img alt="java结构图" src="https://i.loli.net/2021/01/15/ZciaoPf7dMTCgWR.png" />
+    
+    <figcaption class="p-2 text-center">java结构图</figcaption>
+</figure></p>
+<ul>
+<li><strong>JDK(Java Development Kit，java开发工具包)</strong></li>
+</ul>
+<p>JDK包含了java 的所有内容，包括JRE和JVM。
+比JRE包含了更多的是开发需要的工具，比如javac，javadoc等。</p>
+<ul>
+<li><strong>JRE(Java Runtime Environment, java运行环境)</strong></li>
+</ul>
+<p>java的所有程序需要在JRE（运行环境下）才能够运行。</p>
+<p>包括JVM和java核心类库和支持文件</p>
+<p>JRE比JDK少了那些开发的工具（如果不需要开发而只需要运行java 程序则有JRE就足够）</p>
+<ul>
+<li><strong>JVM（Java Virtual Machine, Java虚拟机）</strong></li>
+</ul>
+<p>JDK和JRE都包含着JVM。
+因为java编译后的字节码是通过JVM和运行环境的操作系统做互动的，java之所以可以跨平台运行，都是因为JVM在操作系统和java程序之间进行映射</p>
+<h3 id="二javasejavaeejavame">二、JavaSE,JavaEE,JavaME</h3>
+<ul>
+<li><strong>JavaSE</strong></li>
+</ul>
+<p>标准版,主要用于开发和部署桌面、服务器以及嵌入式设备和实时环境中的Java应用程序。</p>
+<p>JavaSE是JavaEE和JavaME的基础，用来开发C/S架构软件，通俗来讲，即开发电脑桌面应用软件，例如Eclipse</p>
+<ul>
+<li><strong>JavaEE</strong></li>
+</ul>
+<p>企业版，主要针对企业应用的开发,用来开发B/S架构软件。例如，电子商务网站</p>
+<p>JavaEE在JavaSE的基础进行了扩展，增加了一些更加便捷的应用框架。比如我们现在常用的Java开发三大框架Spring、Struts和Hibernate，我们可以应用这些框架轻松写出企业级的应用软件。</p>
+<ul>
+<li><strong>JavaME</strong></li>
+</ul>
+<p>微型版，是一套运行专门为嵌入式设备设计的api接口规范，主要用于开发移动设备软件和嵌入式设备软件比如数字机顶盒，汽车导航系统</p>
+
         </div>
-        <p class="readmore"><a href="https://www.flysnow.org/post/Chocolatey%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://www.flysnow.org/post/hugo/" title="Hugo博客搭建">Hugo博客搭建</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2021年1月14日
-        </date>
+
         
-        <div class="post-content">
-            Hugo博客搭建 一、安装Hugo（基于Windows） 首先在powershell中安装choco包管理器，便于Hugo的安装 powershell -NoProfile -ExecutionPolicy unrestricted -Command &quot;iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))&quot; # 设置环境变量 SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin 安装完成后可以通过choco -version命令查看choco版本号 然后安装Hugo choco install hugo -confirm #查看Hugo是否安装成功 hugo -version……
-        </div>
-        <p class="readmore"><a href="https://www.flysnow.org/post/hugo/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://www.flysnow.org/post/markdown/" title="Markdown">Markdown</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2021年1月14日
-        </date>
+
+
         
-        <div class="post-content">
-            markdown语法学习 1. 标题 在想要设置的标题前加入#，根据#的数量决定标题的级数（#后面需要空格） 示例： # 这是一级标题 ## 这是二级标题 ### 这是三级标题 #### 这是四级标题 ##### 这是五级标题 这是一级标题 这是二级标题 这是三级标题 这是四级标题 这是五级标题 2. 字体 加粗 用2个**包起来 斜体 用1个*包起来……
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/Chocolatey%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">Chocolatey的安装与使用</a></li>
+        
+        <li><a href="/post/hugo/">Hugo博客搭建</a></li>
+        
+        <li><a href="/post/markdown/">Markdown</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            没有标签
+            
         </div>
-        <p class="readmore"><a href="https://www.flysnow.org/post/markdown/">阅读全文</a></p>
     </article>
     
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
     
     
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yourdiscussshortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
-
-
-
-
+    
+    
 </div>
 
                     <footer id="footer">
@@ -175,6 +208,16 @@
 </footer>
 
 
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
 <a id="rocket" href="#top"></a>
 <script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>

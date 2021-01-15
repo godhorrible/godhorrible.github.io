@@ -9,20 +9,20 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
     
 
-    <title>Markdown | 请吃掉我博客</title>
-    <meta property="og:title" content="Markdown - 请吃掉我博客">
+    <title>Hugo博客搭建 | 请吃掉我博客</title>
+    <meta property="og:title" content="Hugo博客搭建 - 请吃掉我博客">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content='2021-01-14T15:34:20&#43;08:00'>
+    <meta property="article:published_time" content='2021-01-14T16:11:17&#43;08:00'>
         
         
-    <meta property="article:modified_time" content='2021-01-14T15:34:20&#43;08:00'>
+    <meta property="article:modified_time" content='2021-01-14T16:11:17&#43;08:00'>
         
     <meta name="Keywords" content="学习">
-    <meta name="description" content="Markdown">
+    <meta name="description" content="Hugo博客搭建">
         
     <meta name="author" content="请吃掉我">
-    <meta property="og:url" content="https://www.flysnow.org/post/markdown/">
+    <meta property="og:url" content="https://www.flysnow.org/post/hugo/">
     <link rel="shortcut icon" href='/favicon.ico'  type="image/x-icon">
 
     <link rel="stylesheet" href='/css/normalize.css'>
@@ -80,7 +80,7 @@
     
     <article class="post">
         <header>
-            <h1 class="post-title">Markdown</h1>
+            <h1 class="post-title">Hugo博客搭建</h1>
         </header>
         <date class="post-meta meta-date">
             2021年1月14日
@@ -94,183 +94,60 @@
         
         
         <div class="post-content">
-            <h1 id="markdown语法学习">markdown语法学习</h1>
-<h3 id="1-标题">1. 标题</h3>
-<p>在想要设置的标题前加入#，根据#的数量决定标题的级数（<strong>#后面需要空格</strong>）</p>
-<p>示例：</p>
-<pre><code>  # 这是一级标题
-  ## 这是二级标题
-  ### 这是三级标题
-  #### 这是四级标题
-  ##### 这是五级标题
-</code></pre><h1 id="这是一级标题">这是一级标题</h1>
-<h2 id="这是二级标题">这是二级标题</h2>
-<h3 id="这是三级标题">这是三级标题</h3>
-<h4 id="这是四级标题">这是四级标题</h4>
-<h5 id="这是五级标题">这是五级标题</h5>
-<hr>
-<h3 id="2-字体">2. 字体</h3>
-<ul>
-<li><strong>加粗</strong>
-用2个**包起来</li>
-<li><strong>斜体</strong>
-用1个*包起来</li>
-<li><strong>斜体加粗</strong>
-用3个*包起来</li>
-<li><strong>删除线</strong>
-用2个~包起来</li>
-</ul>
-<p>示例：</p>
-<pre><code>**这是加粗的文字**
-*这是倾斜的文字*
-***这是斜体加粗的文字***
-~~这是加删除线的文字~~
-</code></pre><p><strong>这是加粗的文字</strong></p>
-<p><em>这是倾斜的文字</em></p>
-<p><em><strong>这是斜体加粗的文字</strong></em></p>
-<p><del>这是加删除线的文字</del></p>
-<hr>
-<h3 id="3-引用">3. 引用</h3>
-<p>在引用的文字前加&gt;即可。引用可以嵌套</p>
-<p>示例：</p>
-<pre><code>&gt;这是引用的内容
-&gt;&gt;这也是
-</code></pre><blockquote>
-<p>这是引用的内容</p>
-<blockquote>
-<p>这也是</p>
-</blockquote>
-</blockquote>
-<hr>
-<h3 id="4-分割线">4. 分割线</h3>
-<p>三个或三个以上的-或*可以形成分割线</p>
-<p>示例：</p>
-<pre><code>---
------
-***
-****
-</code></pre><hr>
-<hr>
-<hr>
-<hr>
-<h3 id="5-图片">5. 图片</h3>
-<p>基础语法：</p>
-<pre><code>![Alt text](图片链接 &quot;optional title&quot;)
-</code></pre><h4 id="1插入本地图片">1）插入本地图片</h4>
-<p>图片链接设置为本地相对路径或者绝对路径</p>
-<p><strong>不推荐使用，不灵活不易分享且容易丢失</strong></p>
-<h4 id="2插入网络图片">2）插入网络图片</h4>
-<p>首先需要将图片上传到网络上的图床上(<strong>推荐使用SM.MS图床，</strong>)</p>
-<p>示例：</p>
-<pre><code>![picture](https://i.loli.net/2021/01/14/Ztpfw3ACihLgn68.jpg)
-</code></pre><p>
-        <img class="mx-auto" alt="picture" src="https://i.loli.net/2021/01/14/Ztpfw3ACihLgn68.jpg" />   
+            <h2 id="hugo博客搭建">Hugo博客搭建</h2>
+<h3 id="一安装hugo基于windows">一、安装Hugo（基于Windows）</h3>
+<p>首先在powershell中安装choco包管理器，便于Hugo的安装</p>
+<pre><code>powershell -NoProfile -ExecutionPolicy unrestricted -Command &quot;iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))&quot;
+
+# 设置环境变量
+SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
+</code></pre><p>安装完成后可以通过choco -version命令查看choco版本号</p>
+<p>然后安装Hugo</p>
+<pre><code>choco install hugo -confirm
+
+#查看Hugo是否安装成功
+hugo -version
+</code></pre><h3 id="二使用hugo创建博客">二、使用Hugo创建博客</h3>
+<p>到合适的路径</p>
+<p>使用hugo new site 创建博客（<strong>创建新的文件夹</strong>）</p>
+<pre><code>hugo new site myblog
+# myblog为自己博客项目名字
+</code></pre><p>myblog文件夹结构如下：</p>
+<pre><code>├── archetypes
+│   └── default.md
+├── config.toml         # 博客站点的配置文件
+├── content             # 博客文章所在目录
+├── data                
+├── layouts             # 网站布局
+├── static              # 一些静态内容
+└── themes              # 博客主题
+</code></pre><h3 id="三下载主题">三、下载主题</h3>
+<p>到<a href="https://themes.gohugo.io/">Hugo主题网站</a>挑选主题进行下载，并放入到themes文件夹下。</p>
+<h3 id="四本地启动博客">四、本地启动博客</h3>
+<pre><code>hugo server -t m10c --buildDrafts
+</code></pre><p>m10c为下载主题的名字，在本地启动服务</p>
+<p>
+        <img class="mx-auto" alt="image.png" src="https://i.loli.net/2021/01/14/453nNyRGxufdLao.png" />   
     </p>
-<hr>
-<h3 id="6-超链接">6. 超链接</h3>
-<p>语法：</p>
-<pre><code>[超链接名](超链接地址 &quot;超链接title&quot;)
-title可加可不加（用于显示鼠标放置链接上的提示信息）
-</code></pre><p>示例：</p>
-<pre><code>[百度](https://baidu.com)
-[简书](https://jianshu.com &quot;这是简书的title&quot;)
-</code></pre><p><a href="https://baidu.com">百度</a>
-<a href="https://jianshu.com" title="这是简书的title">简书</a></p>
-<p>注：markdown的超链接不能在新页面打开，所以如果想要在新页面打开，可以使用html语言的a标签替代</p>
-<p><code>&lt;a href=&quot;超链接地址&quot; target=&quot;_blank&quot;&gt;超链接名&lt;/a&gt;</code></p>
-<p>示例：</p>
-<pre><code>&lt;a href=&quot;https://baidu.com&quot; target=&quot;_blank&quot;&gt;百度&lt;/a&gt;
-</code></pre><p><!-- raw HTML omitted -->百度<!-- raw HTML omitted --></p>
-<hr>
-<h3 id="7-列表">7. 列表</h3>
-<p><strong>无序列表</strong></p>
-<p>语法：</p>
-<p>无需列表用-+*任意一种都可以</p>
-<p>示例：</p>
-<pre><code>- 列表内容
-+ 列表
-* 列表表
-</code></pre><ul>
-<li>列表内容</li>
-</ul>
-<ul>
-<li>列表</li>
-</ul>
-<ul>
-<li>列表表</li>
-</ul>
-<p><strong>有序列表</strong></p>
-<p>语法：
-数字加点（<strong>序号和内容之间要有空格</strong>）</p>
-<p>示例：</p>
-<pre><code>1. 一列表
-2. 二列表
-3. 三列表
-</code></pre><ol>
-<li>一列表</li>
-<li>二列表</li>
-<li>三列表</li>
-</ol>
-<p><strong>列表嵌套</strong></p>
-<p>上一级和下一级之间敲三个空格</p>
-<hr>
-<h3 id="8-表格">8. 表格</h3>
-<p>语法：</p>
-<pre><code>表头|表头|表头
----|:--:|---:
-内容|内容|内容
-内容|内容|内容
-</code></pre><p>第二行分割表头和内容</p>
-<p>-有一个就可以，为了对齐可以多加几个</p>
-<p>-两边加
-<strong>:</strong>
-表示文字居中</p>
-<p>-右边加
-<strong>：</strong>
-表示文字居右</p>
-<p>示例：</p>
-<pre><code>姓名|技能|排行
---|:--:|--:
-刘备|哭|大哥
-关羽|打|二哥
-张飞|骂|三弟
-</code></pre><table>
-<thead>
-<tr>
-<th>姓名</th>
-<th style="text-align:center">技能</th>
-<th style="text-align:right">排行</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>刘备</td>
-<td style="text-align:center">哭</td>
-<td style="text-align:right">大哥</td>
-</tr>
-<tr>
-<td>关羽</td>
-<td style="text-align:center">打</td>
-<td style="text-align:right">二哥</td>
-</tr>
-<tr>
-<td>张飞</td>
-<td style="text-align:center">骂</td>
-<td style="text-align:right">三弟</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="9-代码">9. 代码</h3>
-<p>语法：</p>
-<p>单行代码用`包住</p>
-<p>多行代码用三个`包住（```需要单独占一行）</p>
-<p>示例1：</p>
-<pre><code>`哈哈哈`
-</code></pre><p><code>哈哈哈</code></p>
-<hr>
-<h3 id="10流程图">10.流程图</h3>
-<p>待填充</p>
+<p>可以在localhost:1313浏览目前的博客</p>
+<h3 id="五部署博客到服务器">五、部署博客到服务器</h3>
+<p>本人使用的是github提供的服务器</p>
+<p>首先创建新的github仓库</p>
+<p>我们创建的仓库的名字应该是这种格式&quot;账户名.github.io&quot;，比如我创建的仓库的名字为&quot;godhorrible.github.io&quot;</p>
+<p>然后通过hugo对该域名进行关联</p>
+<pre><code>hugo --theme=maupassant --baseUrl=&quot;https://godhorrible.github.io/&quot; --buildDrafts
+</code></pre><p>运行后在myblog下会产生一个public文件夹</p>
+<p>进入public文件夹将该目录关联到github</p>
+<pre><code># 关联git仓库
+git remote add origin https://github.com/godhorrible/godhorrible.github.io.git
+
+# 提交文件
+git add .
+git commit -m &quot;第一次提交&quot;
+git push
+</code></pre><p>此时可访问<a href="https://godhorrible.github.io">https://godhorrible.github.io</a>来访问自己的博客</p>
+<h3 id="六写文章">六、写文章</h3>
+<p>通过markdown进行文章的编写，将.md文件放入content/post目录下即可</p>
 
         </div>
 
@@ -278,6 +155,15 @@ title可加可不加（用于显示鼠标放置链接上的提示信息）
 
 
         
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/markdown/">Markdown</a></li>
+        
+    </ul>
+</div>
 
 
         <div class="post-meta meta-tags">

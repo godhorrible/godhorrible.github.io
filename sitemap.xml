@@ -3,26 +3,41 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://godhorrible.github.io/post/markdown/</loc>
+    <loc>https://www.flysnow.org/post/Chocolatey%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2021-01-15T14:26:58+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.flysnow.org/post/java%E5%9F%BA%E7%A1%80/</loc>
+    <lastmod>2021-01-15T14:26:58+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.flysnow.org/post/</loc>
+    <lastmod>2021-01-15T14:26:58+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.flysnow.org/</loc>
+    <lastmod>2021-01-15T14:26:58+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.flysnow.org/post/hugo/</loc>
+    <lastmod>2021-01-14T16:11:17+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.flysnow.org/post/markdown/</loc>
     <lastmod>2021-01-14T15:34:20+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://godhorrible.github.io/post/</loc>
-    <lastmod>2021-01-14T15:34:20+08:00</lastmod>
+    <loc>https://www.flysnow.org/categories/</loc>
   </url>
   
   <url>
-    <loc>https://godhorrible.github.io/</loc>
-    <lastmod>2021-01-14T15:34:20+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://godhorrible.github.io/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>https://godhorrible.github.io/tags/</loc>
+    <loc>https://www.flysnow.org/tags/</loc>
   </url>
   
 </urlset>
