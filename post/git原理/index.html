@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+
+    <title>git原理 | 请吃掉我博客</title>
+    <meta property="og:title" content="git原理 - 请吃掉我博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2021-01-15T20:26:58&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2021-01-15T20:26:58&#43;08:00'>
+        
+    <meta name="Keywords" content="学习">
+    <meta name="description" content="git原理">
+        
+    <meta name="author" content="请吃掉我">
+    <meta property="og:url" content="https://www.flysnow.org/post/git%E5%8E%9F%E7%90%86/">
+    <link rel="shortcut icon" href='/favicon.ico'  type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    
+    
+    
+    
+    
+        <link rel="stylesheet" href='/css/douban.css'>
+    
+        <link rel="stylesheet" href='/css/other.css'>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://www.flysnow.org">
+                        请吃掉我博客
+                    </a>
+                
+                
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://www.flysnow.org">首页</a>
+                    
+                    <a  href="https://www.flysnow.org/tools/" title="工具">工具</a>
+                    
+                    <a  href="https://www.flysnow.org/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://www.flysnow.org/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">git原理</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2021年1月15日
+        </date>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <h1 id="git原理">git原理</h1>
+<h3 id="一版本控制的历史">一、版本控制的历史</h3>
+<h4 id="版本控制">版本控制</h4>
+<p>版本控制是一种记录一个或若干文件变化，以便于来查询特定版本修订情况的系统</p>
+<p>版本控制易于将文件<strong>恢复到各个版本</strong></p>
+<h4 id="本地版本控制">本地版本控制</h4>
+<p>采用简单的数据库来记录文件历次的更新差异</p>
+<p>
+        <img class="mx-auto" alt="本地版本控制" src="https://i.loli.net/2021/01/15/3VJaTZYgi7q1KSR.png" />   
+    </p>
+<p>比较流行的是RCS，RCS的工作原理是在硬盘上保存补丁集（<strong>补丁是指修订前后的变化</strong>）</p>
+<h4 id="集中化的版本控制">集中化的版本控制</h4>
+<p>本地版本控制的问题是无法在<strong>不同的系统上协同工作</strong>，于是有了集中化的版本控制系统（Centralized Version Control Systems，CVCS）</p>
+<p>CVCS都有都有一个单一的<strong>集中管理的服务器</strong>，保存所有文件的修订版本，而协同工作的人通过连接到服务器，取出最新的文件或者更新文件</p>
+<p>
+        <img class="mx-auto" alt="集中版本控制" src="https://i.loli.net/2021/01/15/5O3H6mu4kn8wvGe.png" />   
+    </p>
+<p>虽然这么做可以<strong>轻松掌握每个开发者的权限</strong>，并且比在每个客户端都维护数据库来的方便，因为<strong>只用维护一个服务器</strong></p>
+<p>但是这么做，如果中央服务器<strong>单点故障</strong>，那么在故障的时间内，无法协同工作，并且如果所在磁盘发生损坏，又没有做恰当的备份，那么将丢失几乎所有数据，包括整个项目地变更历史</p>
+<h4 id="分布式版本控制">分布式版本控制</h4>
+<p>在分布式版本控制（Distributed Version Control System，DVCS），客户端并不只是提取最新版本的文件快照，而是把代码仓库完整地镜像下来，包括完整地历史记录。这么一来，每次服务器发生故障，事后都可以用任何镜像进行恢复</p>
+<p>
+        <img class="mx-auto" alt="分布式版本控制" src="https://i.loli.net/2021/01/15/Yj8c7tnDRB4Osm6.png" />   
+    </p>
+<p>Git即是分布式版本控制之一</p>
+<h3 id="二git是什么">二、Git是什么</h3>
+<p>以下是Git的思想和基本工作原理</p>
+<h4 id="直接记录快照而非差异比较">直接记录快照，而非差异比较</h4>
+<p>Git和其他很多版本控制不同的一点是<strong>对待数据的方式</strong>。</p>
+<p>其他大部分系统以文件变更列表的方式存储信息，通常称作<strong>基于差异（delta-based）的版本控制</strong></p>
+<p>
+        <img class="mx-auto" alt="存储每个文件与初始版本的差异" src="https://i.loli.net/2021/01/15/qboYnQa2F85zTwf.png" />   
+    </p>
+<p>Git则是像把数据看作是对小型文件系统的一系列快照</p>
+<p>每当提交更新时，Git基本上就会对当时的全部文件创建一个快照并<strong>保存这个快照的索引</strong></p>
+<p>为了效率，如果文件没有修改，Git不会再重新存储文件，而是只保留一<strong>个链接指向之前存储的文件</strong></p>
+<p>
+        <img class="mx-auto" alt="存储随时间改变的快照" src="https://i.loli.net/2021/01/15/xOPmQWu5BRt3AhU.png" />   
+    </p>
+<h4 id="近乎所有的操作都是本地执行">近乎所有的操作都是本地执行</h4>
+<p>在Git中，绝大多数操作都只需要访问本地文件和资源，一般不需要网络上其他计算机的信息</p>
+<p>举个例子：</p>
+<p>如果需要浏览项目的历史，Git不需要连到服务器上获取，而是直接从本地数据中读取</p>
+<h4 id="git保证完整性">Git保证完整性</h4>
+<p>Git中所有的数据都在存储前计算校验和，然后<strong>以校验和来引用</strong>。所以不存在Git不知情的文件或者目录修改</p>
+<p>Git用计算校验和的机制叫SHA-1散列。这是一个由40个十六进制字符组成的字符串，基于Git文件的内容或目录结构计算出来。SHA-1看起来是这样：</p>
+<pre><code>24b9da6552252987aa493b52f8696866d3a00373
+</code></pre><p><strong>实际上，Git数据库中保存的信息都是以文件内容的哈希值来索引，而不是文件名</strong></p>
+<h4 id="git一般只添加数据">Git一般只添加数据</h4>
+<p>你执行的操作几乎只往Git数据库中添加数据，而很难用Git从数据库删除数据。</p>
+<p>所以使得我们可以大胆做各种尝试，因为总可以恢复数据</p>
+<p><em><strong>文件的三种状态</strong></em></p>
+<ul>
+<li>已修改(modified)</li>
+</ul>
+<p>modified表示修改了文件，但还没保存到数据库中</p>
+<ul>
+<li>已暂存(staged)</li>
+</ul>
+<p>staged表示对一个modified文件的当前版本做了标记，使之包含在下次提交的快照中</p>
+<ul>
+<li>已提交(committed)</li>
+</ul>
+<p>commited表示数据已经安全地保存在<strong>本地数据库(已经快照)</strong>
+中</p>
+<p>由以上文件状态引出Git项目地三个阶段：
+<strong>工作区、暂存区、Git目录</strong></p>
+<p>
+        <img class="mx-auto" alt="Git工作区" src="https://i.loli.net/2021/01/15/8ZeVszHD4qfKctO.png" />   
+    </p>
+<ul>
+<li>工作区</li>
+</ul>
+<p>工作区是对项目地某个版本<strong>独立提取出来地内容</strong></p>
+<p>这些从Git压缩的数据库中提取出来的文件，<strong>放在磁盘上供你使用或修改</strong></p>
+<ul>
+<li>暂存区</li>
+</ul>
+<p>暂存区是一个文件，保存了<strong>下一次将要提交的文件列表信息</strong></p>
+<ul>
+<li>Git目录</li>
+</ul>
+<p>Git目录是Git用来保存项目<strong>元数据和对象数据库</strong>的地方，从其他计算机克隆仓库时，就是复制这里的数据</p>
+<p>基本的Git工作流程如下：</p>
+<ol>
+<li>在工作区中修改文件（<strong>文件处于modified</strong>）</li>
+<li>将你想要下次提交的文件暂存（<strong>更改的部分添加到暂存区</strong>）</li>
+<li>提交更新（<strong>找到暂存区的文件，将快照永久性的存储到Git目录</strong>）</li>
+</ol>
+<h3 id="三git分支">三、Git分支</h3>
+<p>为了形象的理解Git的保存数据的方式，假设现在有一个工作目录，里面包含了<strong>3个将要被暂存和提交的文件</strong></p>
+<p><em>暂存操作会为每一个文件计算SHA-1，然后会把当前版本的文件快照保存到Git仓库中</em></p>
+<pre><code>git add README test.rb LICENSE
+git commit -m &quot;The initial commit of my project&quot;
+</code></pre><p><em>在执行commit操作时，Git会计算每一个子目录的校验和，然后在Git仓库中将校验和保存为树对象。之后，创建提交对象</em></p>
+<p>目前Git仓库中的五个对象：3个blob对象(<strong>保存着文件快照</strong>),一个树对象(<strong>记录着目录结构和blob对象索引</strong>)，一个提交对象(<strong>包含着指向前述对象的指针和所有提交信息</strong>)</p>
+<p>
+        <img class="mx-auto" alt="首次提交的结构" src="https://i.loli.net/2021/01/17/4rFToqCKpvPWzOU.png" />   
+    </p>
+<p>做些修改后再次提交，那么这次产生的提交对象会包含一个指向上次提交对象的指针：</p>
+<p>
+        <img class="mx-auto" alt="提交对象.png" src="https://i.loli.net/2021/01/17/bXqgv2KkJQosMh1.png" />   
+    </p>
+<p>Git的分支本质上仅仅是提交对象的可变指针，Git默认的分支名字是master，master分支会在每次提交时自动向前移动</p>
+<p>
+        <img class="mx-auto" alt="分支和提交历史" src="https://i.loli.net/2021/01/17/c5niRs1ouaFzSEl.png" />   
+    </p>
+<h4 id="分支创建">分支创建</h4>
+<p>执行git branch 后，会在当前提交对象上创建一个指针</p>
+<p>
+        <img class="mx-auto" alt="新的分支" src="https://i.loli.net/2021/01/17/4lObGDhSndgYM69.png" />   
+    
+当前的分支通过HEAD来识别当前的本地分支</p>
+<h3 id="四git对象">四、Git对象</h3>
+<p>Git是一个内容寻址文件系统，Git的核心部分是一个简单的key-value数据库</p>
+<p>.git目录几乎包含了几乎所有Git存储和操作的东西，.git的典型目录如下：</p>
+<pre><code>config       # 项目特有的配置选项
+description  # 仅供GitWeb使用
+HEAD         # 指向目前被检出的分支
+hooks/       # 包含客户端或服务端的钩子脚本
+info/        # 包含一个全局性文件，放置哪些不希望被记录在.gitignore文件中的忽略模式
+objects/     # 存储所有数据内容
+refs/        # 指向数据（分支、远程仓库和标签等）的提交对象指针
+</code></pre><h4 id="数据对象">数据对象</h4>
+<p>首先我们创建一个新的Git版本，确认objects目录为空</p>
+<pre><code>&gt; git init test
+Initialized empty Git repository in D:/GitTest/test/.git/
+
+# 此时objects文件夹中只有info、pack两个文件夹
+</code></pre><p>此时我们向Git数据库中传递内容，-w选项表示该命令不要只返回键，还要把对象写入数据库中</p>
+<pre><code>&gt; echo &quot;test content&quot; | git hash-object -w --stdin
+fb100dfb30d9ab8d023c3410e7a71ee5704efc33
+</code></pre><p>此时观察objects的目录变化为.git/objects/fb/100dfb30d9ab8d023c3410e7a71ee5704efc33</p>
+<p>这就是Git存储内容的方式：一个文件对应一条内容，以该内容加上特定头部信息一起的SHA-1校验和为文件命名，前2字符为目录，后38字符为文件名</p>
+<pre><code># 得到100df...c33文件的内容
+# -p 选项表示该命令自动判断内容的类型 
+&gt; git cat-file -p 100dfb30d9ab8d023c3410e7a71ee5704efc33
+test content
+# -t选项表示现实type
+&gt; git cat-file -t 100dfb30d9ab8d023c3410e7a71ee5704efc33
+blob
+</code></pre><p>由此可以看出此文件对应的就是存储的内容，由存储时生成的SHA-1校验码(<strong>key</strong>)取得具体存储的内容(<strong>value</strong>)</p>
+<p><em><strong>所以在每次向Git数据库进行写入数据的时候就会创建SHA-1校验和的文件，当我们想要取得某一个版本的时候，就可以直接由SHA-1校验和取得具体文件的值，从而实现版本控制</strong></em></p>
+<p>但是记录每个版本的SHA-1的值并不现实，所以在此之上，上述类型的对象我们称之为数据对象(blob object)</p>
+<h4 id="树对象">树对象</h4>
+<p>接下来探讨的是树对象，它能够解决<strong>文件名</strong>保存的问题</p>
+<p>Git内部存储树节点可能如下图所示：
+
+        <img class="mx-auto" alt="Git树节点" src="https://i.loli.net/2021/01/19/XWsRLw59jEC7Tl6.png" />   
+    </p>
+<p><em><strong>首先，我们先尝试模拟Git创建树节点的过程</strong></em></p>
+<p>我们在根目录创建一个test.txt文件，然后运行git update-index指令将test.txt加入到暂存区,并创建树节点</p>
+<pre><code># 将test.txt加入暂存区
+&gt; git update-index --add test.txt
+
+#创建树节点
+&gt; git write-tree
+74af625895ff122c2aba9a42dbfa804673395495
+
+# 查看树节点存储内容
+&gt; git cat-file -p 74af625895ff122c2aba9a42dbfa804673395495
+100644 blob dbfb31e697c3e1328d6d6dc292035261b0e24a8b    test.txt
+</code></pre><p>由此可见树节点74af中存放的是面向test.txt的节点类型，指针和文件名</p>
+<p>接着我们创建一个新的对象，它包括test.txt的第二个版本（修改test.txt内容），以及一个新的文件new.text。</p>
+<pre><code># 添加修改后的test.txt和new.txt到暂存区
+&gt; git update-index --add test.txt
+&gt; git update-index --add new.txt
+
+# 创建树节点
+&gt; git write-tree
+4d3ee6b294ac44116b57bd496d9ff7170314e2a0
+
+# 查看树节点存放内容
+&gt; git cat-file -p 4d3ee6b294ac44116b57bd496d9ff7170314e2a0
+100644 blob a78a282aae70de7410b28ac8c88bc0f69caeb1d0    new.txt
+100644 blob 90f7ad788ae7d6879568115008a06915663e9d7f    test.txt
+</code></pre><p><strong>此时的test.txt的blob节点的SHA-1校验码和上个版本的不同</strong></p>
+<p>同样，树节点也可以嵌套使用，如上面图所示</p>
+<p>由此可见，树节点其实更像是文件的一个快照，里面存放指针指向真正的数据文件</p>
+<h4 id="提交对象">提交对象</h4>
+<p>如果我们想跟踪不同的项目快照，树节点的SHA-1校验码也很难记，并且你也完全不知道是谁保存了这些快照，在什么时候保存的，以及为什么保存这些快照</p>
+<p>而这些就是提交对象能为你保存的基本信息</p>
+<p>首先我们先通过commit-tree 命令创建一个提交对象，并需要指定<strong>一个树对象的SHA-1值</strong></p>
+<pre><code># 创建提交对象
+&gt; echo 'first commit' | git commit-tree 74af625895ff122c2aba9a42dbfa804673395495
+2ca6ec07f859550ddd5f3b731ada446d27b09139
+
+# 查看提交对象内容
+&gt; git cat-file -p 2ca6ec07f859550ddd5f3b731ada446d27b09139
+tree 74af625895ff122c2aba9a42dbfa804673395495
+author godhorrible &lt;33385437+godhorrible@users.noreply.github.com&gt; 1611054290 +0800
+committer godhorrible &lt;33385437+godhorrible@users.noreply.github.com&gt; 1611054290 +0800
+
+first commit
+</code></pre><p>可见，提交内容存储了<strong>树节点指针（代表当前项目快照）</strong>、<strong>可能存在的父提交</strong>、<strong>提交者信息</strong>，以及提交注释</p>
+<p>比较复杂的Git存储图：
+
+        <img class="mx-auto" alt="Git存储结构" src="https://i.loli.net/2021/01/19/pwjECtJnWPhK3ly.png" />   
+    </p>
+<p>综上：</p>
+<p>我们在执行git add 和 git commit时
+<strong>Git所做的工作实质就是将被改写的文件保存为数据对象，更新暂存区，记录树对象，最后创建了一个指明了顶层树对象和父提交的提交对象</strong></p>
+<p>以上所有的对象（blob、tree、commit）都存放在.git/objects目录下</p>
+<h3 id="五git引用">五、Git引用</h3>
+<p>如果我们想查看某次提交的历史，我们依然需要记住commit对象的SHA-1值，如果我们有一个专门的文件来存储这些值，会更简单，这就是Git引用</p>
+<p>我们可以到.git/refs目录下找到含有SHA-1值的文件</p>
+<pre><code># .git/refs目录
+&gt; find .git/refs
+.git/refs
+.git/heads
+.git/tags
+
+# 创建引用
+&gt; git update-ref refs/heads/master 2ca6ec0
+
+# 更新heads中的引用文件
+&gt; git update-ref refs/heads/master 
+2ca6ec07f859550ddd5f3b731ada446d27b09139
+</code></pre><p>上面其实就是创建了一个master引用指向commit对象的SHA-1</p>
+<p>Git的数据库看起来是这样：
+
+        <img class="mx-auto" alt="Git引用" src="https://i.loli.net/2021/01/19/HTXa2P6RVGdjpZA.png" />   
+    </p>
+<p>当运行git branch <!-- raw HTML omitted --> 时，其实Git会运行update-refs命令，取得当前分支最新的SHA-1值，并将其加入你想要创建的任何新的引用中</p>
+<h4 id="head引用">HEAD引用</h4>
+<p>HEAD文件时一个符号引用（<strong>指向引用的引用</strong>）</p>
+<p>HEAD文件的内容</p>
+<pre><code>&gt; cat .git/HEAD
+ref: refs/heads/master
+
+# 切换分支
+&gt; git checkout test
+
+# 再次查看HEAD
+&gt; cat .git/HEAD
+ref: refs/heads/test
+</code></pre><h4 id="远程引用">远程引用</h4>
+<p>如果你添加了一个远程版本库并对其执行过推送操作，Git会记录下最近一个推送操作时每一个分支的commit对象，并保存在refs/remotes下</p>
+<p>远程引用是只读的，Git将这些远程引用作为记录远程服务器上各分支最后已知位置状态的书签来管理</p>
+
+        </div>
+
+        
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/Chocolatey%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">Chocolatey的安装与使用</a></li>
+        
+        <li><a href="/post/java%E5%9F%BA%E7%A1%80/">Java基础</a></li>
+        
+        <li><a href="/post/hugo/">Hugo博客搭建</a></li>
+        
+        <li><a href="/post/markdown/">Markdown</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            没有标签
+            
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yourdiscussshortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+    
+</div>
+
+                    <footer id="footer">
+    <div>
+        &copy; 2021 <a href="https://www.flysnow.org">请吃掉我博客 By 请吃掉我</a>
+        
+    </div>
+    <br />
+    <div>
+        <div class="github-badge">
+            <a href="https://gohugo.io/" target="_black" rel="nofollow"><span class="badge-subject">Powered by</span><span class="badge-value bg-blue">Hugo</span></a>
+        </div>
+        <div class="github-badge">
+            <a href="https://www.flysnow.org/" target="_black"><span class="badge-subject">Design by</span><span class="badge-value bg-brightgreen">飞雪无情</span></a>
+        </div>
+        <div class="github-badge">
+            <a href="https://github.com/flysnow-org/maupassant-hugo" target="_black"><span class="badge-subject">Theme</span><span class="badge-value bg-yellowgreen">Maupassant</span></a>
+        </div>
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+    <script src='/js/douban.js'></script>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://www.flysnow.org/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://www.flysnow.org">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://www.flysnow.org/post/git%E7%9A%84%E4%BD%BF%E7%94%A8/" title="git的使用">git的使用</a>
+    </li>
+    
+    <li>
+        <a href="https://www.flysnow.org/post/git%E5%8E%9F%E7%90%86/" title="git原理">git原理</a>
+    </li>
+    
+    <li>
+        <a href="https://www.flysnow.org/post/Chocolatey%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" title="Chocolatey的安装与使用">Chocolatey的安装与使用</a>
+    </li>
+    
+    <li>
+        <a href="https://www.flysnow.org/post/java%E5%9F%BA%E7%A1%80/" title="Java基础">Java基础</a>
+    </li>
+    
+    <li>
+        <a href="https://www.flysnow.org/post/hugo/" title="Hugo博客搭建">Hugo博客搭建</a>
+    </li>
+    
+    <li>
+        <a href="https://www.flysnow.org/post/markdown/" title="Markdown">Markdown</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/categories/'>分类</a></h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/tags/'>标签</a></h3>
+<div class="tagcloud">
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://www.flysnow.org/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

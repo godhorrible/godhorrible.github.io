@@ -6,7 +6,25 @@
     <description>Recent content in Posts on 请吃掉我博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 15 Jan 2021 14:26:58 +0800</lastBuildDate><atom:link href="https://www.flysnow.org/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 15 Jan 2021 20:56:58 +0800</lastBuildDate><atom:link href="https://www.flysnow.org/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>git的使用</title>
+      <link>https://www.flysnow.org/post/git%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Fri, 15 Jan 2021 20:56:58 +0800</pubDate>
+      
+      <guid>https://www.flysnow.org/post/git%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>git的使用 一、Git的安装 基于Windows： 前提：已安装chocolatey 打开powershell # 安装Git choco install git # 查看Git是否安装成功 git --version Git配置文件 1. /etc/gitconfig文件 包含系统上所有用户以及所有仓库的配置，如果带上&amp;ndash;sysytem选项时，</description>
+    </item>
+    
+    <item>
+      <title>git原理</title>
+      <link>https://www.flysnow.org/post/git%E5%8E%9F%E7%90%86/</link>
+      <pubDate>Fri, 15 Jan 2021 20:26:58 +0800</pubDate>
+      
+      <guid>https://www.flysnow.org/post/git%E5%8E%9F%E7%90%86/</guid>
+      <description>git原理 一、版本控制的历史 版本控制 版本控制是一种记录一个或若干文件变化，以便于来查询特定版本修订情况的系统 版本控制易于将文件恢复到各个版本 本地版本控制 采用简单的数据库来记录文件历次的更新差异 比较流行的是RCS，RCS的工作原理是在硬盘上保存补丁集（补丁是指修订前后的变化） 集中化</description>
+    </item>
+    
     <item>
       <title>Chocolatey的安装与使用</title>
       <link>https://www.flysnow.org/post/Chocolatey%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>

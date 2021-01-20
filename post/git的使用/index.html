@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+
+    <title>git的使用 | 请吃掉我博客</title>
+    <meta property="og:title" content="git的使用 - 请吃掉我博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2021-01-15T20:56:58&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2021-01-15T20:56:58&#43;08:00'>
+        
+    <meta name="Keywords" content="学习">
+    <meta name="description" content="git的使用">
+        
+    <meta name="author" content="请吃掉我">
+    <meta property="og:url" content="https://www.flysnow.org/post/git%E7%9A%84%E4%BD%BF%E7%94%A8/">
+    <link rel="shortcut icon" href='/favicon.ico'  type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    
+    
+    
+    
+    
+        <link rel="stylesheet" href='/css/douban.css'>
+    
+        <link rel="stylesheet" href='/css/other.css'>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://www.flysnow.org">
+                        请吃掉我博客
+                    </a>
+                
+                
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://www.flysnow.org">首页</a>
+                    
+                    <a  href="https://www.flysnow.org/tools/" title="工具">工具</a>
+                    
+                    <a  href="https://www.flysnow.org/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://www.flysnow.org/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">git的使用</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2021年1月15日
+        </date>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <h1 id="git的使用">git的使用</h1>
+<h3 id="一git的安装">一、Git的安装</h3>
+<p><em><strong>基于Windows：</strong></em></p>
+<p><em>前提：已安装chocolatey</em></p>
+<p>打开powershell</p>
+<pre><code># 安装Git
+choco install git
+
+# 查看Git是否安装成功
+git --version
+</code></pre><p><strong>Git配置文件</strong></p>
+<p><strong>1. /etc/gitconfig文件</strong></p>
+<p>包含系统上所有用户以及所有仓库的配置，如果带上&ndash;sysytem选项时，会对此文件进行修改</p>
+<p><strong>2. ~/.config/git/config文件</strong></p>
+<p>针对当前用户的所有仓库配置，可以传递&ndash;global选项对此文件进行修改</p>
+<p><strong>3. .git/config</strong></p>
+<p>针对当前用户当前项目仓库的配置，可以传递&ndash;local选项是该文件修改（<strong>默认</strong>）</p>
+<p><strong>用户信息</strong></p>
+<pre><code>git config --global user.nam &quot;wodemingzi&quot;
+git config --global user.email 123@ex.com
+</code></pre><p>可以通过如上方式对进行用户信息的配置</p>
+<h3 id="二git的更新与提交操作">二、git的更新与提交操作</h3>
+<h4 id="获取git仓库">获取Git仓库</h4>
+<ol>
+<li>将本地<strong>未进行版本控制</strong>的项目转换为Git仓库</li>
+</ol>
+<pre><code>cd 项目目录下
+
+git init
+</code></pre><p>git init将创建一个.git的子目录，这个目录含有初始化Git仓库中所有必须的文件</p>
+<p>但是在这时，我们只是初始化，<strong>项目里的文件还没有被跟踪</strong></p>
+<p>如果想要跟踪文件，需要执行git add 并git commit</p>
+<ol start="2">
+<li>从其他服务器上<strong>克隆</strong>一个已经存在的Git仓库</li>
+</ol>
+<pre><code>cd 项目想要存放的目录下
+
+git clone https://github.com/libgit/ligit
+
+# 指定新的目录名
+git clone https://github.com/libgit/ligit myname
+</code></pre><h4 id="记录每次更新到仓库">记录每次更新到仓库</h4>
+<p>
+        <img class="mx-auto" alt="文件的状态变化" src="https://i.loli.net/2021/01/15/EnRwiZQfM2AluP4.png" />   
+    </p>
+<p>untracked表示未被跟踪的文件</p>
+<pre><code># 查看工作目录状态
+git status
+
+# 跟踪新文件
+git add &lt;file&gt;
+# 跟踪file.java
+git add file.java
+# 跟踪所有文件
+git add .
+# 跟踪.c文件
+git add *.c
+</code></pre><p>git add 命令不仅可以将<strong>untracked文件改为staged状态，还可以将modified文件改为staged状态</strong></p>
+<h4 id="状态简览">状态简览</h4>
+<pre><code>&gt; git status -s
+ M README
+MM Rakefile
+A  lib/git.rb
+M  lib/file.java
+?? LI.txt
+
+# ?? 新添加未跟踪
+# A  新添加到暂存区
+# M  修改过
+# 左栏表示暂存区的状态，右栏表示工作区的状态
+</code></pre><h4 id="忽略文件">忽略文件</h4>
+<p>有些自动生成的文件，不需要纳入Git的管理，可以新建名为.gitignore的文件，列出要忽略的文件模式</p>
+<pre><code>&gt; cat .gitignore
+
+# 忽略所有以.o和.a结尾的文件
+*.[oa]
+
+# 忽略以~结尾的文件
+*~
+</code></pre><p>.gitignore的详细语法可以参考<a href="https://github.com/github/gitignore">https://github.com/github/gitignore</a></p>
+<h4 id="查看已暂存和未暂存的修改">查看已暂存和未暂存的修改</h4>
+<pre><code># 查看工作目录中和暂存区之间的差异
+git diff
+
+# 查看暂存区和最后一次提交的文件差异
+git diff --staged
+</code></pre><h4 id="提交更新">提交更新</h4>
+<p>推荐每次准备提交前用git status查看是否有文件没有进入暂存区</p>
+<pre><code># -m指定commit命令和提交信息在一行
+&gt; git commit -m &quot;Fix&quot;
+[master 463dc4f] Fix
+2 files changed
+create mode 100644 README
+</code></pre><p>可以看到是在哪个分支（master）提交的，本次提交的完整校验和时是什么(436dc4f)，文件的变化</p>
+<h4 id="跳过使用暂存区域">跳过使用暂存区域</h4>
+<p>尽管使用暂存区可以精心准备需要提交的细节，但有时这么做较为繁琐，可以给git commit 加上-a选项跳过暂存区提交</p>
+<p>Git 会把所有已经跟踪过的文件<strong>暂存并提交</strong></p>
+<pre><code>git commit -a -m &quot;add new file&quot;
+</code></pre><h4 id="移出文件">移出文件</h4>
+<p>如果需要移除某个文件，从跟踪文件列表中去除</p>
+<p>首先先删除某个文件（file.c），然后执行以下命令</p>
+<pre><code># 从跟踪文件列表删除
+git rm file.c
+
+# 文件修改过或者处于暂存区,需要使用-f (force,不能被Git恢复)
+git rm -f file.c
+</code></pre><p>如果你想<strong>从跟踪文件列表删除，但是想在本地目录保存</strong>，可以使用&ndash;cached选项</p>
+<h4 id="移动文件">移动文件</h4>
+<pre><code>git mv file_from file_to
+</code></pre><h3 id="三查看提交历史">三、查看提交历史</h3>
+<pre><code>&gt; git log
+commit 9723dcd0a2c1a6323979c5823e7354a1e053defa
+Author: godhorrible &lt;33385437+godhorrible@users.noreply.github.com&gt;
+Date:   Thu Jan 14 16:08:41 2021 +0800
+    test
+commit c6569f9b06cd57cc296b03a7b2f11d67e390aad7
+Author: godhorrible &lt;33385437+godhorrible@users.noreply.github.com&gt;
+Date:   Thu Jan 14 13:47:09 2021 +0800
+    add file
+</code></pre><p>git log常用的选项</p>
+<ul>
+<li>-p(显示每次提交所引入的差异)</li>
+<li>-2(显示最近两次的提交)</li>
+<li>&ndash;stat(显示每次提交的简略统计信息)</li>
+<li>&ndash;since=2.weeks(显示最近两周的提交)</li>
+</ul>
+<h3 id="四撤销操作">四、撤销操作</h3>
+<p><em>有些撤销操作时不可逆的，所以这是在使用Git过程中，少数操作失误而丢失工作的地方</em></p>
+<p>有时提交后才发现漏掉几个文件没有添加，或者提交信息写错了，此时，可以使用&ndash;amend</p>
+<pre><code># 将暂存区的文件提交，合并第一次提交
+git commit --amend
+
+# 最终只会有一次提交（第二次提交代替第一次）
+git commit -m 'initial commit'
+git add forgotten.txt
+git commit --amend
+</code></pre><h4 id="取消暂存的文件">取消暂存的文件</h4>
+<pre><code># 假设有a.c和b.c两个文件被add,而你只想add b.c
+git add *.c
+
+# 撤销a.c的add操作（reset即取消暂存）
+git reset HEAD a.c
+</code></pre><h4 id="撤销对文件的修改">撤销对文件的修改</h4>
+<pre><code># 想把文件的修改变为上次提交或者刚clone下来的样子
+git checkout -- file.txt
+</code></pre><p><strong>git checkout &ndash; <!-- raw HTML omitted -->是一个危险的命令，这会使得你对文件的本地修改都会消失</strong></p>
+<p><em>记住，在Git中提交的东西几乎总是可以恢复的，甚至那些删除的分支中的提交或者&ndash;amend选项覆盖的提交</em></p>
+<h3 id="五远程仓库的使用">五、远程仓库的使用</h3>
+<h4 id="查看远程仓库">查看远程仓库</h4>
+<pre><code># 显示需要读写远程仓库使用的Git保存的简写与其对应的URL
+git remote -v
+</code></pre><h4 id="添加远程仓库">添加远程仓库</h4>
+<pre><code># 添加远程仓库
+git remote add &lt;shortname&gt; &lt;url&gt;
+
+# 运行后可以用pb代表整个URL
+git remote add pb https://github.com/paulboone/ticgit
+</code></pre><h4 id="从远程仓库中抓取与拉取">从远程仓库中抓取与拉取</h4>
+<p>在git clone后，命令会自动将仓库默认为origin</p>
+<pre><code># 从远程仓库中获取数据
+git fetch &lt;remote&gt;
+
+git fetch https://github.com/paulboone/ticgit
+</code></pre><p>这个命令会访问远程仓库，从中拉取所有你还没有的数据</p>
+<p>如果你当权的分支设置了跟踪远程分支，那么可以用git pull命令来自动抓取后合并该远程分支到当前分支</p>
+<h4 id="推送到远程仓库">推送到远程仓库</h4>
+<pre><code># 将master分支推送到origin服务器
+git push origin master
+</code></pre><h4 id="查看某个远程仓库">查看某个远程仓库</h4>
+<pre><code>git remote show origin
+</code></pre><h3 id="六分支操作">六、分支操作</h3>
+<h4 id="新建分支">新建分支</h4>
+<pre><code># 创建新分支testing
+git branch testing
+
+# 可以通过git log和--decorate选项 查看各个分支当前所指的commit对象
+git log --oneline --decorate
+
+# 分支切换
+git checkout testing
+</code></pre><p>使用分支的好处：
+先在分支commit，再checkout回master，再commit，可形成分叉
+
+        <img class="mx-auto" alt="分叉" src="https://i.loli.net/2021/01/17/7RwOsKNXjiIzfvr.png" />   
+    </p>
+<h4 id="分支合并">分支合并</h4>
+<p>
+        <img class="mx-auto" alt="分支例子" src="https://i.loli.net/2021/01/17/RUifPog2HDVLdNS.png" />   
+    </p>
+<p>当前背景假设：
+master是当前<strong>项目线上的使用版本</strong>，iss53是当前正在<strong>开发的需求分支</strong>，hotfix分支是在开发iss53过程中出现的紧急bug，<strong>为了解决bug而新建的分支</strong></p>
+<p>目前bug修复完毕，需要合并master和hotfix分支</p>
+<pre><code>&gt; git checkout master
+&gt; git merge hotfix
+Updating f42c576..3a0874c
+Fast-forward
+1 file changed...
+</code></pre><p>可以看到<strong>快进（fast-forward）</strong>
+这个词。
+由于你想要合并的分支hotfix所指向的C4是C2(master)的后继节点，所以Git会直接将指针向前移动</p>
+<p><em>当你试图合并两个分支时，如果顺着一个分支走下去能够到达另一个分支，那么在Git合并两者时，会简单将指针移动（fast-forward）</em></p>
+<pre><code># 删除hotfix分支
+git branch -d hotfix
+# 切回iss53工作
+git checkout iss53
+</code></pre><p>
+        <img class="mx-auto" alt="完成合并和删除" src="https://i.loli.net/2021/01/17/gBcijvAJeYtH4p9.png" />   
+    </p>
+<p>此时需要合并master分支和iss53分支</p>
+<pre><code>&gt; git checkout master
+&gt; git merge iss53
+Merge made by the 'recursive' strategy
+1 file changed...
+</code></pre><p>这种情况和合并hotfix不一样，你的开发历史从一个更早的地方开始分叉(diverged)，出现这种你情况时，Git会使用两个分支的末端所指的快照(<strong>C4和C5</strong>)以及两个分支的公共祖先(<strong>C2</strong>)，做简单的三方合并</p>
+<p>
+        <img class="mx-auto" alt="三方合并过程" src="https://i.loli.net/2021/01/17/hPifatGqW9KJxed.png" />   
+    </p>
+<p>和之前fast-forward不同的是，Git将此次三方合并的结果做了一个新的快照并且自动创建了一个<strong>新的提交</strong>指向它</p>
+<p>
+        <img class="mx-auto" alt="三方合并完成" src="https://i.loli.net/2021/01/17/TQ1RPv83LStpXsN.png" />   
+    </p>
+<h4 id="合并遇到冲突">合并遇到冲突</h4>
+<p>如果两个不同的分支，对同一个文件的同一个部分进行了不同的修改，Git就没办法干净的合并它们</p>
+<pre><code>&gt; git merge iss53
+Auto-merging index.html
+CONFLICT(content): Merge conflict in index.html
+Automatic merge failed; fix conflicts and then commit the result
+</code></pre><p>Git会暂停下来，等待你去解决合并产生的冲突，可以使用git status自己解决冲突</p>
+<h4 id="分支管理">分支管理</h4>
+<p>git branch命令不仅可以创建和删除分支，如果不加参数运行，可以得到<strong>目前的分支列表</strong></p>
+<p>&ndash;merged可以查看哪些分支已经合并到当前分支
+&ndash;no-merged查看未合并的分支
+-D强制删除分支</p>
+<p>远程分支：
+
+        <img class="mx-auto" alt="远程分支" src="https://i.loli.net/2021/01/17/DX98zb2OxhTq5cf.png" />   
+    </p>
+<p>
+        <img class="mx-auto" alt="更新你的远程跟踪分支" src="https://i.loli.net/2021/01/17/4259tKdHZMomg1O.png" />   
+    </p>
+<p>跟踪分支：从一个远程跟踪分支检出一个本地分支会自动创建所谓的跟踪分支</p>
+<p>如果在一个跟踪分支上输入git pull，Git能自动地识别去哪个服务器上抓取、合并到哪个分支</p>
+<p><em><strong>git fetch和git pull</strong></em></p>
+<p>当git fetch命令从服务器上抓取本地没有的数据时，它并不会修改工作目录中的内容，它只会获取数据然后让你自己合并</p>
+<p>git pull的含义i是一个git fetch紧接着一个git merge</p>
+<p><strong>删除远程分支</strong></p>
+<pre><code>git push origin --delete serverfix
+</code></pre><p>基本上这个命令做的只是从服务器上移除了这个指针，Git通常会保留数据一段时间直到垃圾回收运行</p>
+<h4 id="变基">变基</h4>
+<p>在Git中整合来自不同分支的修改主要有两种：merge和rebase（变基）</p>
+<p>此为两个分支：
+
+        <img class="mx-auto" alt="分叉的提交历史" src="https://i.loli.net/2021/01/17/Atwu3LvdfHEXa9B.png" />   
+    </p>
+<p>merge命令C3和C4以及祖先C2合并，产生新的提交C5：
+
+        <img class="mx-auto" alt="merge结果" src="https://i.loli.net/2021/01/17/5ZGTrNM26oDVRXt.png" />   
+    </p>
+<p>除此之外还有一种方法：提取C4中的补丁和修改，重新在C3的基础上应用一次，这种操作就叫<strong>变基</strong></p>
+<p>你可以使用rebase命令将提交到某一分支上的所有修改内容都移至另一分支上</p>
+<p>
+        <img class="mx-auto" alt="rebase结果" src="https://i.loli.net/2021/01/17/zkY2OoMCBDaUnKF.png" />   
+    </p>
+<pre><code>git checkout experiment
+git rebase master
+# ===== 变基完成 ======
+git checkout master
+# 执行fast-forward合并
+git merge experiment
+</code></pre><p><em>复杂的rebase情况</em></p>
+<p>
+        <img class="mx-auto" alt="复杂的rebase情况" src="https://i.loli.net/2021/01/17/DRnSjFmprfk5QNA.png" />   
+    </p>
+<p>上图中，我们想把client分支与master合并，但不想合并server分支，此时使用选项&ndash;onto</p>
+<pre><code># “取出client,找出它从server分支分歧之后的补丁，然后在master分支上重放”
+git rebase --onto master server client
+
+# 执行fast-forward合并
+git checkout master
+git merge client
+</code></pre><p>
+        <img class="mx-auto" alt="复杂rebase结果" src="https://i.loli.net/2021/01/17/nDBfvUzS57ExMo8.png" />   
+    </p>
+<p><em><strong>如果提交存在于你的仓库之外，而别人可能基于这些开发，则不要使用变基</strong></em></p>
+<h3 id="七git指令速查">七、Git指令速查</h3>
+<p>
+        <img class="mx-auto" alt="Git指令" src="https://i.loli.net/2021/01/19/GXjTCR7zkeSptEm.png" />   
+    </p>
+
+        </div>
+
+        
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/git%E5%8E%9F%E7%90%86/">git原理</a></li>
+        
+        <li><a href="/post/Chocolatey%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">Chocolatey的安装与使用</a></li>
+        
+        <li><a href="/post/java%E5%9F%BA%E7%A1%80/">Java基础</a></li>
+        
+        <li><a href="/post/hugo/">Hugo博客搭建</a></li>
+        
+        <li><a href="/post/markdown/">Markdown</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            没有标签
+            
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yourdiscussshortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+    
+</div>
+
+                    <footer id="footer">
+    <div>
+        &copy; 2021 <a href="https://www.flysnow.org">请吃掉我博客 By 请吃掉我</a>
+        
+    </div>
+    <br />
+    <div>
+        <div class="github-badge">
+            <a href="https://gohugo.io/" target="_black" rel="nofollow"><span class="badge-subject">Powered by</span><span class="badge-value bg-blue">Hugo</span></a>
+        </div>
+        <div class="github-badge">
+            <a href="https://www.flysnow.org/" target="_black"><span class="badge-subject">Design by</span><span class="badge-value bg-brightgreen">飞雪无情</span></a>
+        </div>
+        <div class="github-badge">
+            <a href="https://github.com/flysnow-org/maupassant-hugo" target="_black"><span class="badge-subject">Theme</span><span class="badge-value bg-yellowgreen">Maupassant</span></a>
+        </div>
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+    <script src='/js/douban.js'></script>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://www.flysnow.org/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://www.flysnow.org">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://www.flysnow.org/post/git%E7%9A%84%E4%BD%BF%E7%94%A8/" title="git的使用">git的使用</a>
+    </li>
+    
+    <li>
+        <a href="https://www.flysnow.org/post/git%E5%8E%9F%E7%90%86/" title="git原理">git原理</a>
+    </li>
+    
+    <li>
+        <a href="https://www.flysnow.org/post/Chocolatey%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" title="Chocolatey的安装与使用">Chocolatey的安装与使用</a>
+    </li>
+    
+    <li>
+        <a href="https://www.flysnow.org/post/java%E5%9F%BA%E7%A1%80/" title="Java基础">Java基础</a>
+    </li>
+    
+    <li>
+        <a href="https://www.flysnow.org/post/hugo/" title="Hugo博客搭建">Hugo博客搭建</a>
+    </li>
+    
+    <li>
+        <a href="https://www.flysnow.org/post/markdown/" title="Markdown">Markdown</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/categories/'>分类</a></h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/tags/'>标签</a></h3>
+<div class="tagcloud">
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://www.flysnow.org/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

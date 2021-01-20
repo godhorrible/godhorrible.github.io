@@ -2,9 +2,64 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>请吃掉我博客</title>
-    <link>uildDrafts/</link>
+    <link>https://www.flysnow.org/</link>
     <description>Recent content on 请吃掉我博客</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language><atom:link href="uildDrafts/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 15 Jan 2021 20:56:58 +0800</lastBuildDate><atom:link href="https://www.flysnow.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>git的使用</title>
+      <link>https://www.flysnow.org/post/git%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Fri, 15 Jan 2021 20:56:58 +0800</pubDate>
+      
+      <guid>https://www.flysnow.org/post/git%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>git的使用 一、Git的安装 基于Windows： 前提：已安装chocolatey 打开powershell # 安装Git choco install git # 查看Git是否安装成功 git --version Git配置文件 1. /etc/gitconfig文件 包含系统上所有用户以及所有仓库的配置，如果带上&amp;ndash;sysytem选项时，</description>
+    </item>
+    
+    <item>
+      <title>git原理</title>
+      <link>https://www.flysnow.org/post/git%E5%8E%9F%E7%90%86/</link>
+      <pubDate>Fri, 15 Jan 2021 20:26:58 +0800</pubDate>
+      
+      <guid>https://www.flysnow.org/post/git%E5%8E%9F%E7%90%86/</guid>
+      <description>git原理 一、版本控制的历史 版本控制 版本控制是一种记录一个或若干文件变化，以便于来查询特定版本修订情况的系统 版本控制易于将文件恢复到各个版本 本地版本控制 采用简单的数据库来记录文件历次的更新差异 比较流行的是RCS，RCS的工作原理是在硬盘上保存补丁集（补丁是指修订前后的变化） 集中化</description>
+    </item>
+    
+    <item>
+      <title>Chocolatey的安装与使用</title>
+      <link>https://www.flysnow.org/post/Chocolatey%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Fri, 15 Jan 2021 14:26:58 +0800</pubDate>
+      
+      <guid>https://www.flysnow.org/post/Chocolatey%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
+      <description>Chocolatey的安装与使用 一、Chocolatey简介 Chocolatey是Windows平台上一款软件包管理器，便于安装各种软件包，用命令行的方式完成安装，并省去了环境变量设置等操作 二、Chocolatey安装 首先以管理员的身份打开PowerShell iex ((new-object net.webclient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;)) # 或者下面的命</description>
+    </item>
+    
+    <item>
+      <title>Java基础</title>
+      <link>https://www.flysnow.org/post/java%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Fri, 15 Jan 2021 14:26:58 +0800</pubDate>
+      
+      <guid>https://www.flysnow.org/post/java%E5%9F%BA%E7%A1%80/</guid>
+      <description>java比较杂的基础 一、jdk，JRE，JVM 以下为官方提供的java结构图 java结构图 JDK(Java Development Kit，java开发工具包) JDK包含了java 的所有内容，包括JRE和JVM。 比JRE包含了更多的是开发需要的工具，比如javac，javadoc等。 JRE(Java Runtime Environment, java运行环境) java的</description>
+    </item>
+    
+    <item>
+      <title>Hugo博客搭建</title>
+      <link>https://www.flysnow.org/post/hugo/</link>
+      <pubDate>Thu, 14 Jan 2021 16:11:17 +0800</pubDate>
+      
+      <guid>https://www.flysnow.org/post/hugo/</guid>
+      <description>Hugo博客搭建 一、安装Hugo（基于Windows） 首先在powershell中安装choco包管理器，便于Hugo的安装 powershell -NoProfile -ExecutionPolicy unrestricted -Command &amp;quot;iex ((new-object net.webclient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;))&amp;quot; # 设置环境变量 SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin 安装完成后可以通过choco -version命令查看choco版本号 然后安装Hugo choco install hugo -confirm #查看Hugo是否安装成功 hugo -version</description>
+    </item>
+    
+    <item>
+      <title>Markdown</title>
+      <link>https://www.flysnow.org/post/markdown/</link>
+      <pubDate>Thu, 14 Jan 2021 15:34:20 +0800</pubDate>
+      
+      <guid>https://www.flysnow.org/post/markdown/</guid>
+      <description>markdown语法学习 1. 标题 在想要设置的标题前加入#，根据#的数量决定标题的级数（#后面需要空格） 示例： # 这是一级标题 ## 这是二级标题 ### 这是三级标题 #### 这是四级标题 ##### 这是五级标题 这是一级标题 这是二级标题 这是三级标题 这是四级标题 这是五级标题 2. 字体 加粗 用2个**包起来 斜体 用1个*包起来</description>
+    </item>
+    
   </channel>
 </rss>
