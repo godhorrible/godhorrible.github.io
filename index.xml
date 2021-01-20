@@ -2,46 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>请吃掉我博客</title>
-    <link>https://www.flysnow.org/</link>
+    <link>uildDrafts/</link>
     <description>Recent content on 请吃掉我博客</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
-    <lastBuildDate>Fri, 15 Jan 2021 14:26:58 +0800</lastBuildDate><atom:link href="https://www.flysnow.org/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Chocolatey的安装与使用</title>
-      <link>https://www.flysnow.org/post/Chocolatey%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
-      <pubDate>Fri, 15 Jan 2021 14:26:58 +0800</pubDate>
-      
-      <guid>https://www.flysnow.org/post/Chocolatey%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
-      <description>Chocolatey的安装与使用 一、Chocolatey简介 Chocolatey是Windows平台上一款软件包管理器，便于安装各种软件包，用命令行的方式完成安装，并省去了环境变量设置等操作 二、Chocolatey安装 首先以管理员的身份打开PowerShell iex ((new-object net.webclient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;)) # 或者下面的命</description>
-    </item>
-    
-    <item>
-      <title>Java基础</title>
-      <link>https://www.flysnow.org/post/java%E5%9F%BA%E7%A1%80/</link>
-      <pubDate>Fri, 15 Jan 2021 14:26:58 +0800</pubDate>
-      
-      <guid>https://www.flysnow.org/post/java%E5%9F%BA%E7%A1%80/</guid>
-      <description>java比较杂的基础 一、jdk，JRE，JVM 以下为官方提供的java结构图 java结构图 JDK(Java Development Kit，java开发工具包) JDK包含了java 的所有内容，包括JRE和JVM。 比JRE包含了更多的是开发需要的工具，比如javac，javadoc等。 JRE(Java Runtime Environment, java运行环境) java的</description>
-    </item>
-    
-    <item>
-      <title>Hugo博客搭建</title>
-      <link>https://www.flysnow.org/post/hugo/</link>
-      <pubDate>Thu, 14 Jan 2021 16:11:17 +0800</pubDate>
-      
-      <guid>https://www.flysnow.org/post/hugo/</guid>
-      <description>Hugo博客搭建 一、安装Hugo（基于Windows） 首先在powershell中安装choco包管理器，便于Hugo的安装 powershell -NoProfile -ExecutionPolicy unrestricted -Command &amp;quot;iex ((new-object net.webclient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;))&amp;quot; # 设置环境变量 SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin 安装完成后可以通过choco -version命令查看choco版本号 然后安装Hugo choco install hugo -confirm #查看Hugo是否安装成功 hugo -version</description>
-    </item>
-    
-    <item>
-      <title>Markdown</title>
-      <link>https://www.flysnow.org/post/markdown/</link>
-      <pubDate>Thu, 14 Jan 2021 15:34:20 +0800</pubDate>
-      
-      <guid>https://www.flysnow.org/post/markdown/</guid>
-      <description>markdown语法学习 1. 标题 在想要设置的标题前加入#，根据#的数量决定标题的级数（#后面需要空格） 示例： # 这是一级标题 ## 这是二级标题 ### 这是三级标题 #### 这是四级标题 ##### 这是五级标题 这是一级标题 这是二级标题 这是三级标题 这是四级标题 这是五级标题 2. 字体 加粗 用2个**包起来 斜体 用1个*包起来</description>
-    </item>
-    
+    <language>zh-CN</language><atom:link href="uildDrafts/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
