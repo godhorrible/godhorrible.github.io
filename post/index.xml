@@ -8,6 +8,15 @@
     <language>zh-CN</language>
     <lastBuildDate>Fri, 15 Jan 2021 20:56:58 +0800</lastBuildDate><atom:link href="https://www.flysnow.org/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Github项目搜索技巧</title>
+      <link>https://www.flysnow.org/post/Github%E9%A1%B9%E7%9B%AE%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/</link>
+      <pubDate>Fri, 15 Jan 2021 20:56:58 +0800</pubDate>
+      
+      <guid>https://www.flysnow.org/post/Github%E9%A1%B9%E7%9B%AE%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/</guid>
+      <description>Github项目搜索技巧 in 关键词in是用来限定搜索范围： in:name: 指定搜索范围是仓库名称 in:description: 指定搜索范围是项目描述 in:readme: 指定搜索范围是readme文档 例子： # 指定仓库名有sprintboot、mybatis in:name springboot mybatis stars、forks 通常判断一个项目好不好，是由stars和fork来判断 搜索方</description>
+    </item>
+    
+    <item>
       <title>git的使用</title>
       <link>https://www.flysnow.org/post/git%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Fri, 15 Jan 2021 20:56:58 +0800</pubDate>
